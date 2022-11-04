@@ -51,7 +51,6 @@
            Solution solution = new Q21MergeTwoSortedLists().new Solution();
           ListNode l1 = new ListNode(2, new ListNode(4));
           ListNode list1 = new ListNode(1, l1);
-
           ListNode l2 = new ListNode(3, new ListNode(4));
           ListNode list2 = new ListNode(1, l2);
           System.out.println(solution.mergeTwoLists(list1,list2));
