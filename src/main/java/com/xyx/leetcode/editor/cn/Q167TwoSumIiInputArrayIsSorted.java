@@ -65,6 +65,7 @@
       //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
+        // 一左一右两个指针相向而行
         int left = 0, right = numbers.length - 1;
         while (left < right) {
             int sum = numbers[left] + numbers[right];
