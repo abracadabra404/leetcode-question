@@ -49,6 +49,7 @@
       //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public void reverseString(char[] s) {
+        // 一左一右两个指针相向而行
         int left = 0, right = s.length - 1;
         while (left < right) {
             // 交换left，right

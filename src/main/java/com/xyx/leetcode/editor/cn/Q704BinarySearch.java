@@ -45,6 +45,7 @@
       //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int search(int[] nums, int target) {
+        // 一左一右两个指针相向而行
         int left = 0, right = nums.length - 1;
         while (left <= right) {
             int mid = (left + right) / 2;
