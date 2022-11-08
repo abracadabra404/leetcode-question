@@ -56,27 +56,33 @@
       public static void main(String[] args) {
            Solution solution = new Q125ValidPalindrome().new Solution();
           String s = "A man, a plan, a canal: Panama ";
+          
           System.out.println(solution.isPalindrome(s));
       }
       //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isPalindrome(String s) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if (Character.isLetterOrDigit(ch)) {
-                builder.append(ch);
-            }
-        }
-        // 一左一右两个指针相向而行
-        int left = 0,right = builder.length() -1;
+        char[] chars = s.toLowerCase().toCharArray();
+        int left = 0, right = chars.length - 1;
         while (left < right) {
-            if (Character.toLowerCase(builder.charAt(left++)) != Character.toLowerCase(builder.charAt(right--))) {
+            while (!isValid(chars[left]) && left < right) {
+                left++;
+            }
+            while (!isValid(chars[right]) && left < right) {
+                right--;
+            }
+            if (chars[left] != chars[right]) {
                 return false;
             }
+            left++;
+            right--;
         }
         return true;
     }
+
+          private boolean isValid(char c) {
+              return (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9');
+          }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
