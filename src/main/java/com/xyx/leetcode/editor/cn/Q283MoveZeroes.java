@@ -62,9 +62,8 @@ class Solution {
             }
             fast ++;
         }
-        while (fast > slow) {
+        for (; slow < fast; slow++) {
             nums[slow] = 0;
-            slow++;
         }
     }
 }
