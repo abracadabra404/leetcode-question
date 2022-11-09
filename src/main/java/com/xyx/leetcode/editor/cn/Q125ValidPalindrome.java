@@ -56,6 +56,7 @@
       public static void main(String[] args) {
            Solution solution = new Q125ValidPalindrome().new Solution();
           String s = "A man, a plan, a canal: Panama ";
+
           System.out.println(solution.isPalindrome(s));
       }
       //leetcode submit region begin(Prohibit modification and deletion)
