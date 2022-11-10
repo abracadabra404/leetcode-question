@@ -1,4 +1,4 @@
-//给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。
+  //给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。 
 //
 // 
 //
@@ -25,55 +25,33 @@
 //
 //
 
+  
+  package com.xyx.leetcode.editor.cn;
+  public class Q543DiameterOfBinaryTree{
+      public static void main(String[] args) {
+           Solution solution = new Q543DiameterOfBinaryTree().new Solution();
+      }
+      //leetcode submit region begin(Prohibit modification and deletion)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
 
-package com.xyx.leetcode.editor.cn;
-
-import com.xyx.leetcode.TreeNode;
-
-import javax.sound.midi.Soundbank;
-
-public class Q543DiameterOfBinaryTree {
-    public static void main(String[] args) {
-        Solution solution = new Q543DiameterOfBinaryTree().new Solution();
-        TreeNode treeNode = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15,new TreeNode(4),new TreeNode(5)), new TreeNode(7)));
-        System.out.println(solution.diameterOfBinaryTree(treeNode));
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for a binary tree node.
-     * public class TreeNode {
-     * int val;
-     * TreeNode left;
-     * TreeNode right;
-     * TreeNode() {}
-     * TreeNode(int val) { this.val = val; }
-     * TreeNode(int val, TreeNode left, TreeNode right) {
-     * this.val = val;
-     * this.left = left;
-     * this.right = right;
-     * }
-     * }
-     */
-    class Solution {
-        int maxDiameter = 0;
-
-        public int diameterOfBinaryTree(TreeNode root) {
-            maxDepth(root);
-            return maxDiameter;
-        }
-
-        private int maxDepth(TreeNode root) {
-            if (root == null) {
-                return 0;
-            }
-            int leftMax = maxDepth(root.left);
-            int rightMax = maxDepth(root.right);
-            int myDiameter = leftMax + rightMax;
-            maxDiameter = Math.max(myDiameter, maxDiameter);
-            return 1 + Math.max(leftMax, rightMax);
-        }
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
 
-}
+  }
