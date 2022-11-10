@@ -25,8 +25,11 @@
 //
 //
 
-  
+
   package com.xyx.leetcode.editor.cn;
+
+  import com.xyx.leetcode.TreeNode;
+
   public class Q543DiameterOfBinaryTree{
       public static void main(String[] args) {
            Solution solution = new Q543DiameterOfBinaryTree().new Solution();
@@ -48,8 +51,22 @@
  * }
  */
 class Solution {
-    public int diameterOfBinaryTree(TreeNode root) {
+    int maxDiameter = 0;
 
+    public int diameterOfBinaryTree(TreeNode root) {
+        maxDepth(root);
+        return maxDiameter;
+    }
+
+    private int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftMax = maxDepth(root.left);
+        int rightMax = maxDepth(root.right);
+        int myDiameter = leftMax + rightMax;
+        maxDiameter = Math.max(myDiameter, maxDiameter);
+        return 1 + Math.max(leftMax, rightMax);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
