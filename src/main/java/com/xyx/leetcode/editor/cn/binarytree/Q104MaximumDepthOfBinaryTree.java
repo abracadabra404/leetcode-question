@@ -23,11 +23,9 @@
 //
 
   
-  package com.xyx.leetcode.editor.cn;
+  package com.xyx.leetcode.editor.cn.binarytree;
 
   import com.xyx.leetcode.TreeNode;
-
-  import javax.swing.*;
 
   public class Q104MaximumDepthOfBinaryTree{
       public static void main(String[] args) {

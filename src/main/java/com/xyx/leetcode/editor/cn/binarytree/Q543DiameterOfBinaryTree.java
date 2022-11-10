@@ -26,7 +26,7 @@
 //
 
 
-  package com.xyx.leetcode.editor.cn;
+  package com.xyx.leetcode.editor.cn.binarytree;
 
   import com.xyx.leetcode.TreeNode;
 
