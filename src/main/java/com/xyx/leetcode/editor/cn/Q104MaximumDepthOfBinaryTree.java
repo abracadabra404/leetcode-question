@@ -23,7 +23,7 @@
 //
 
   
-  package com.xyx.leetcode.editor.cn.binarytree;
+  package com.xyx.leetcode.editor.cn;
 
   import com.xyx.leetcode.TreeNode;
 
