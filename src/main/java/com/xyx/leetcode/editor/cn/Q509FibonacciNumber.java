@@ -59,7 +59,7 @@ public class Q509FibonacciNumber {
     }
 
     class Solution1 {
-        public int fib(int n) {
+        public int fib1(int n) {
             // momo initial 0
             int[] memo = new int[n + 1];
             // recursive with memo
@@ -77,22 +77,41 @@ public class Q509FibonacciNumber {
             memo[n] = helper(memo, n - 1) + helper(memo, n - 2);
             return memo[n];
         }
-    }
 
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int fib(int n) {
+        public int fib2(int n) {
             if (n == 0) {
                 return 0;
             }
             int[] dp = new int[n + 1];
             // base case
-            dp[0]=0;dp[1]=1;
+            dp[0] = 0;
+            dp[1] = 1;
             // 状态转移
             for (int i = 2; i <= n; i++) {
                 dp[i] = dp[i - 1] + dp[i - 2];
             }
             return dp[n];
+        }
+
+    }
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int fib(int n) {
+            // base case
+            if (n == 0 || n == 1) {
+                return n;
+            }
+            // 分别代表dp[i-1],dp[i-2]
+            int dp_i_1 = 1,dp_i_2=0;
+            // 状态转移
+            for (int i = 2; i <= n; i++) {
+                // dp[i] = dp[i-1]+dp[i-2]
+                int dp_i = dp_i_1 + dp_i_2;
+                dp_i_2 = dp_i_1;
+                dp_i_1 = dp_i;
+            }
+            return dp_i_1;
         }
 
 
