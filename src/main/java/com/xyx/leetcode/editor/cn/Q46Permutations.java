@@ -60,10 +60,10 @@ public class Q46Permutations {
     class Solution {
 
         List<List<Integer>> res = new LinkedList<>();
+        // 记录路径
+        LinkedList<Integer> track = new LinkedList<>();
 
         public List<List<Integer>> permute(int[] nums) {
-            // 记录路径
-            LinkedList<Integer> track = new LinkedList<>();
             // 路径中的元素会被标记为true，避免重复使用
             boolean[] used = new boolean[nums.length];
             backTrack(nums, track, used);
@@ -74,17 +74,21 @@ public class Q46Permutations {
         // 选择列表：nums中不存在于track的那些元素（used[i]=false）
         //
         private void backTrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
+            // base case,到达叶子节点
             if (track.size() == nums.length) {
+                // 收集叶子节点上的值
                 res.add(new LinkedList<>(track));
                 return;
             }
             for (int i = 0; i < nums.length; i++) {
+                // 已经存在track中的元素，不能重复选择
                 if (used[i]) {
                     continue;
                 }
                 // 做选择
                 track.add(nums[i]);
                 used[i] = true;
+                // 进入下一层回溯树
                 backTrack(nums, track, used);
                 // 取消选择
                 track.removeLast();
