@@ -49,6 +49,8 @@ import java.util.Queue;
  * @author xuyaxi
  */
 public class Q111MinimumDepthOfBinaryTree{
+
+
       public static void main(String[] args) {
            Solution solution = new Q111MinimumDepthOfBinaryTree().new Solution();
           TreeNode node = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
@@ -82,11 +84,14 @@ class Solution {
 
         while (!q.isEmpty()) {
             int sz = q.size();
+            // 将当前队列中的所有节点向四周扩算
             for (int i = 0; i < sz; i++) {
                 TreeNode cur = q.poll();
+                // 判断是否到达终点
                 if (cur.left == null && cur.right == null) {
                     return depth;
                 }
+                // 将cur的相邻节点加入队列
                 if (cur.left != null) {
                     q.offer(cur.left);
                 }
@@ -94,6 +99,7 @@ class Solution {
                     q.offer(cur.right);
                 }
             }
+            // 增加步数
             depth++;
         }
         return depth;
