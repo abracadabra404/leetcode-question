@@ -1,4 +1,4 @@
-  //给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否
+//给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否
 //则返回 -1。 
 //
 // 示例 1: 
@@ -33,35 +33,38 @@
 //
 //
 
-  
-  package com.xyx.leetcode.editor.cn;
-  public class Q704BinarySearch{
-      public static void main(String[] args) {
-           Solution solution = new Q704BinarySearch().new Solution();
-          int nums[] = {-1, 0, 3, 5, 9, 12};
-          int target = 12;
-          System.out.println(solution.search(nums,target));
-      }
-      //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int search(int[] nums, int target) {
-        // 一左一右两个指针相向而行
-        int left = 0, right = nums.length - 1;
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if (nums[mid] < target) {
-                // 往右边找
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                // 往左边找
-                right = mid -1;
-            } else if (nums[mid] == target) {
-                return mid;
-            }
-        }
-        return -1;
+
+package com.xyx.leetcode.editor.cn;
+
+public class Q704BinarySearch {
+    public static void main(String[] args) {
+        Solution solution = new Q704BinarySearch().new Solution();
+        int nums[] = {-1, 0, 3, 5, 9, 12};
+        int target = 12;
+        System.out.println(solution.search(nums, target));
     }
-}
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int search(int[] nums, int target) {
+            // 一左一右两个指针相向而行
+            int left = 0, right = nums.length - 1;
+            while (left <= right) {
+//            int mid = (left + right) / 2;
+                int mid = left + (right - left) / 2;
+                if (nums[mid] < target) {
+                    // 往右边找
+                    left = mid + 1;
+                } else if (nums[mid] > target) {
+                    // 往左边找
+                    right = mid - 1;
+                } else if (nums[mid] == target) {
+                    return mid;
+                }
+            }
+            return -1;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
-  }
+}
