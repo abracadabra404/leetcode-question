@@ -40,17 +40,16 @@
 //
 //
 
- 
+
 package com.xyx.leetcode.editor.cn;
-public class Q121BestTimeToBuyAndSellStock{
-      public static void main(String[] args) {
-           Solution solution = new Q121BestTimeToBuyAndSellStock().new Solution();
-          int[] prices = new int[]{7,6,4,3,1};
-          System.out.println(solution.maxProfit(prices));
-      }
-      //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
+
+public class Q121BestTimeToBuyAndSellStock {
+    public static void main(String[] args) {
+        Solution solution = new Q121BestTimeToBuyAndSellStock().new Solution();
+        int[] prices = new int[]{7, 6, 4, 3, 1};
+        System.out.println(solution.maxProfit(prices));
+    }
+    public int maxProfit1(int[] prices) {
         int n = prices.length;
         int[][] dp = new int[n][2];
         for (int i = 0; i < n; i++) {
@@ -64,7 +63,22 @@ class Solution {
         }
         return dp[n - 1][0];
     }
-}
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+
+        public int maxProfit(int[] prices) {
+            int minPrice = Integer.MAX_VALUE;
+            int maxProfit = 0;
+            for (int i = 0; i < prices.length; i++) {
+                if (prices[i] < minPrice) {
+                    minPrice = prices[i];
+                } else if (prices[i] - minPrice > maxProfit) {
+                    maxProfit = prices[i] - minPrice;
+                }
+            }
+            return maxProfit;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
-  }
+}
