@@ -46,9 +46,10 @@ package com.xyx.leetcode.editor.cn;
 public class Q121BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
         Solution solution = new Q121BestTimeToBuyAndSellStock().new Solution();
-        int[] prices = new int[]{7, 6, 4, 3, 1};
+        int[] prices = new int[]{7, 1, 5, 3, 6, 4};
         System.out.println(solution.maxProfit(prices));
     }
+
     public int maxProfit1(int[] prices) {
         int n = prices.length;
         int[][] dp = new int[n][2];
@@ -63,20 +64,31 @@ public class Q121BestTimeToBuyAndSellStock {
         }
         return dp[n - 1][0];
     }
+
+    public int maxProfit(int[] prices) {
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else if (prices[i] - minPrice > maxProfit) {
+                maxProfit = prices[i] - minPrice;
+            }
+        }
+        return maxProfit;
+    }
+
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
         public int maxProfit(int[] prices) {
-            int minPrice = Integer.MAX_VALUE;
-            int maxProfit = 0;
-            for (int i = 0; i < prices.length; i++) {
-                if (prices[i] < minPrice) {
-                    minPrice = prices[i];
-                } else if (prices[i] - minPrice > maxProfit) {
-                    maxProfit = prices[i] - minPrice;
-                }
+            int n = prices.length;
+            int dp_i_0 = 0, dp_i_1 = Integer.MIN_VALUE;
+            for (int i = 0; i < n; i++) {
+                dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
+                dp_i_1 = Math.max(dp_i_1, -prices[i]);
             }
-            return maxProfit;
+            return dp_i_0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
