@@ -72,10 +72,13 @@ public class Q82RemoveDuplicatesFromSortedListIi {
                 if (cur.next.val == cur.next.next.val) {
                     // 删除的方法是先记录这个值
                     int value = cur.next.val;
+                    // while 循环，不断的查找相同的节点
                     while (cur.next != null && cur.next.val == value) {
                         cur.next = cur.next.next;
                     }
+                    // 下个节点与下下节点相同，说明cur可以加入到最终的结果链表
                 } else {
+                    // 继续访问后面的节点
                     cur = cur.next;
                 }
             }
