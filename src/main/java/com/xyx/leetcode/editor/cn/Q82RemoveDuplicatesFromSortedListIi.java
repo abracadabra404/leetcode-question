@@ -46,6 +46,32 @@ public class Q82RemoveDuplicatesFromSortedListIi {
         System.out.println("before node:" + listNode);
         System.out.println("after node:" + solution.deleteDuplicates(listNode));
     }
+
+    public ListNode deleteDuplicates(ListNode head) {
+        // 设置虚拟头结点
+        ListNode dummy = new ListNode(-1);
+        // 将虚拟头结点与原链接头结点连接起来
+        dummy.next = head;
+        // 从虚拟头结点开始访问
+        ListNode cur = dummy;
+        // 只要当前节点的下一个节点与下下节点都存在，就继续访问下去
+        while (cur.next != null && cur.next.next != null) {
+            // 访问过程，下一个节点与下下节点相同，说明与这个节点的值所有的节点都应该删除掉
+            if (cur.next.val == cur.next.next.val) {
+                // 删除的方法是先记录这个值
+                int value = cur.next.val;
+                // while 循环，不断的查找相同的节点
+                while (cur.next != null && cur.next.val == value) {
+                    cur.next = cur.next.next;
+                }
+                // 下个节点与下下节点相同，说明cur可以加入到最终的结果链表
+            } else {
+                // 继续访问后面的节点
+                cur = cur.next;
+            }
+        }
+        return dummy.next;
+    }
     //leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -60,29 +86,18 @@ public class Q82RemoveDuplicatesFromSortedListIi {
      */
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
-            // 设置虚拟头结点
-            ListNode dummy = new ListNode(-1);
-            // 将虚拟头结点与原链接头结点连接起来
-            dummy.next = head;
-            // 从虚拟头结点开始访问
-            ListNode cur = dummy;
-            // 只要当前节点的下一个节点与下下节点都存在，就继续访问下去
-            while (cur.next != null && cur.next.next != null) {
-                // 访问过程，下一个节点与下下节点相同，说明与这个节点的值所有的节点都应该删除掉
-                if (cur.next.val == cur.next.next.val) {
-                    // 删除的方法是先记录这个值
-                    int value = cur.next.val;
-                    // while 循环，不断的查找相同的节点
-                    while (cur.next != null && cur.next.val == value) {
-                        cur.next = cur.next.next;
-                    }
-                    // 下个节点与下下节点相同，说明cur可以加入到最终的结果链表
-                } else {
-                    // 继续访问后面的节点
-                    cur = cur.next;
-                }
+            if (head == null || head.next == null) {
+                return head;
             }
-            return dummy.next;
+            if (head.val != head.next.val) {
+                head.next = deleteDuplicates(head.next);
+            } else {
+                while (head.next != null && head.val == head.next.val) {
+                    head = head.next;
+                }
+                head = deleteDuplicates(head.next);
+            }
+            return head;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
