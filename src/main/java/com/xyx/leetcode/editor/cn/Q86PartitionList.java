@@ -1,4 +1,4 @@
-  //给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。 
+//给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。 
 //
 // 你应当 保留 两个分区中每个节点的初始相对位置。 
 //
@@ -36,33 +36,22 @@
 //
 //
 
-  
-  package com.xyx.leetcode.editor.cn;
 
-  import com.xyx.leetcode.ListNode;
+package com.xyx.leetcode.editor.cn;
 
-  public class Q86PartitionList{
-      public static void main(String[] args) {
-           Solution solution = new Q86PartitionList().new Solution();
-          ListNode l1 = new ListNode(5, new ListNode(2));
-          ListNode l2 = new ListNode(2, l1);
-          ListNode l3 = new ListNode(3, l2);
-          ListNode l4 = new ListNode(4, l3);
-          ListNode l5 = new ListNode(1, l4);
-          System.out.println(solution.partition(l5,3));
-      }
-      //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
+import com.xyx.leetcode.ListNode;
+
+public class Q86PartitionList {
+    public static void main(String[] args) {
+        Solution solution = new Q86PartitionList().new Solution();
+        ListNode l1 = new ListNode(5, new ListNode(2));
+        ListNode l2 = new ListNode(2, l1);
+        ListNode l3 = new ListNode(3, l2);
+        ListNode l4 = new ListNode(4, l3);
+        ListNode l5 = new ListNode(1, l4);
+        System.out.println(solution.partition(l5, 3));
+    }
+
     public ListNode partition(ListNode head, int x) {
         // 存放小于x的的链表虚拟头结点
         ListNode dummy1 = new ListNode(-1);
@@ -86,7 +75,40 @@ class Solution {
         p1.next = dummy2.next;
         return dummy1.next;
     }
-}
+    //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution {
+        public ListNode partition(ListNode head, int x) {
+            ListNode dummy1 = new ListNode(-1);
+            ListNode dummy2 = new ListNode(-1);
+            ListNode p1 = dummy1, p2 = dummy2;
+            ListNode p = head;
+            while (p != null) {
+                if (p.val < x) {
+                    p1.next = p;
+                    p1 = p1.next;
+                } else {
+                    p2.next = p;
+                    p2 = p2.next;
+                }
+                ListNode temp = p.next;
+                p.next = null;
+                p = temp;
+            }
+            p1.next = dummy2.next;
+            return dummy1.next;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
-  }
+}

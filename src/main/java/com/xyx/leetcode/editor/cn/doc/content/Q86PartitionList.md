@@ -34,7 +34,7 @@
 
 <div id="labuladong"><hr>
 
-**通知：[数据结构精品课](https://aep.h5.xeknow.com/s/1XJHEO) 已更新到 V2.0；第 13 期刷题打卡 [开始报名](https://mp.weixin.qq.com/s/eUG2OOzY3k_ZTz-CFvtv5Q)。**
+**通知：[数据结构精品课](https://aep.h5.xeknow.com/s/1XJHEO) 已更新到 V2.0，第 14 期打卡训练营 [开始报名](https://aep.xet.tech/s/3ts7sQ)。**
 
 
 
@@ -43,6 +43,8 @@
 
 本题思路为《[数据结构精品课](https://aep.h5.xeknow.com/s/1XJHEO)》学员专属，购买**并登录课程**后即可查看。如果你已经购买课程还无法查看，请点击 [这里](https://appktavsiei5995.pc.xiaoe-tech.com/detail/i_62b43720e4b07bd2d7b1b6dd/1) 查看各个插件的解锁方法。</details>
 </div>
+
+
 
 
 
