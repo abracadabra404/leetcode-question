@@ -88,6 +88,7 @@ public class Q86PartitionList {
      * }
      */
     class Solution {
+        // update
         public ListNode partition(ListNode head, int x) {
             ListNode dummy1 = new ListNode(-1);
             ListNode dummy2 = new ListNode(-1);
