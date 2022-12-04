@@ -71,23 +71,30 @@ public class Q19RemoveNthNodeFromEndOfList {
      */
     class Solution {
         public ListNode removeNthFromEnd(ListNode head, int n) {
+            // 虚拟头结点
             ListNode dummy = new ListNode(-1);
             dummy.next = head;
+            // 删除倒数第n个，先找到单数第n+1个节点
             ListNode x = findFormEnd(dummy, n + 1);
+            // 删除倒数第n个节点
             x.next = x.next.next;
             return dummy.next;
         }
 
         private ListNode findFormEnd(ListNode dummy, int i) {
+            // 虚拟头节点
             ListNode p1 = dummy;
+            // p1走k步
             for (int j = 0; j < i; j++) {
                 p1 = p1.next;
             }
             ListNode p2 = dummy;
+            // p1，p2同时走n-k步
             while (p1 != null) {
                 p2 = p2.next;
                 p1 = p1.next;
             }
+            //p2指向第n-k+1个节点，倒数第k个节点
             return p2;
         }
     }
