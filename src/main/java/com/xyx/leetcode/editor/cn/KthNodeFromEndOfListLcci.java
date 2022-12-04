@@ -43,14 +43,17 @@ public class KthNodeFromEndOfListLcci {
     class Solution {
         public int kthToLast(ListNode head, int k) {
             ListNode p1 = head;
+            // p1先走k步
             for (int i = 0; i < k; i++) {
                 p1 = p1.next;
             }
             ListNode p2 = head;
+            // p1,p2同时走n-k步
             while (p1 != null) {
                 p2 = p2.next;
                 p1 = p1.next;
             }
+            // 此时p2指向第n-k+1步，即倒数第k个节点
             return p2.val;
         }
     }
