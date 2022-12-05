@@ -64,9 +64,13 @@ public class Q876MiddleOfTheLinkedList {
      */
     class Solution {
         public ListNode middleNode(ListNode head) {
+            // 快慢指针初始化指向head
             ListNode slow = head, fast = slow;
+            // 快指针走到链表末尾位置
             while (fast != null && fast.next != null) {
+                // 慢指针走一步
                 slow = slow.next;
+                // 快指针走两步
                 fast = fast.next.next;
             }
             return slow;
