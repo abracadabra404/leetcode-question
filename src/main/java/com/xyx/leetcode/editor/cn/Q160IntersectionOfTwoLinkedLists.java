@@ -102,8 +102,8 @@ import com.xyx.leetcode.ListNode;
 public class Q160IntersectionOfTwoLinkedLists {
     public static void main(String[] args) {
         Solution solution = new Q160IntersectionOfTwoLinkedLists().new Solution();
-        ListNode listA = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-        ListNode listB = new ListNode(6, new ListNode(7, new ListNode(4, new ListNode(5))));
+        ListNode listA = new ListNode(4, new ListNode(1, new ListNode(8, new ListNode(4, new ListNode(5)))));
+        ListNode listB = new ListNode(5, new ListNode(6, new ListNode(1, new ListNode(8, new ListNode(4, new ListNode(5))))));
         System.out.println(solution.getIntersectionNode(listA, listB));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -121,6 +121,7 @@ public class Q160IntersectionOfTwoLinkedLists {
      */
     public class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+            // p1
             ListNode p1 = headA, p2 = headB;
             while (p1 != p2) {
                 if (p1 == null) {
