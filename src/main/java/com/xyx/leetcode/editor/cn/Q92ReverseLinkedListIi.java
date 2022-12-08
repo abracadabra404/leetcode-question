@@ -48,6 +48,8 @@ import com.xyx.leetcode.ListNode;
 public class Q92ReverseLinkedListIi {
     public static void main(String[] args) {
         Solution solution = new Q92ReverseLinkedListIi().new Solution();
+        ListNode listNode = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+        System.out.println(solution.reverseBetween(listNode, 2, 4));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -64,6 +66,7 @@ public class Q92ReverseLinkedListIi {
     class Solution {
         public ListNode reverseBetween(ListNode head, int left, int right) {
             if (left == 1) {
+                // 反转以head为起点的n个节点
                 return reverseN(head, right);
             }
             head.next = reverseBetween(head.next, left - 1, right - 1);
@@ -74,11 +77,13 @@ public class Q92ReverseLinkedListIi {
 
         private ListNode reverseN(ListNode head, int right) {
             if (right == 1) {
+                // 记录第n+1个节点
                 successor = head.next;
                 return head;
             }
             ListNode last = reverseN(head.next, right - 1);
             head.next.next = head;
+            // head指向第n+1个节点
             head.next = successor;
             return last;
         }
