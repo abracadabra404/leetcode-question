@@ -87,12 +87,15 @@ public class Q83RemoveDuplicatesFromSortedList {
      */
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
+            // 从头节点开始访问
             ListNode cur = head;
 
             while (cur != null && cur.next != null) {
+                // 当前节点和当前节点的下一节点相同，此时删除重复元素
                 if (cur.val == cur.next.val) {
                     cur.next = cur.next.next;
                 } else {
+                    // 继续访问后面的节点
                     cur = cur.next;
                 }
             }
