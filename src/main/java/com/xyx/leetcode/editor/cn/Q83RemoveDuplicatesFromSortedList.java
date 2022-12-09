@@ -51,6 +51,28 @@ public class Q83RemoveDuplicatesFromSortedList {
         System.out.println("before node:" + listNode);
         System.out.println("after node:" + solution.deleteDuplicates(listNode));
     }
+
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode slow = head, fast = head;
+        while (fast != null) {
+            if (fast.val != slow.val) {
+                // nums[slow] = nums[fast]
+                slow.next = fast;
+                // slow ++
+                slow = slow.next;
+            }
+            // fast ++
+            fast = fast.next;
+        }
+        // 断开与后面重复元素的连接
+        slow.next = null;
+        return head;
+
+    }
+
     //leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -65,24 +87,16 @@ public class Q83RemoveDuplicatesFromSortedList {
      */
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
-            if (head == null) {
-                return null;
-            }
-            ListNode slow = head, fast = head;
-            while (fast != null) {
-                if (fast.val != slow.val) {
-                    // nums[slow] = nums[fast]
-                    slow.next = fast;
-                    // slow ++
-                    slow = slow.next;
-                }
-                // fast ++
-                fast = fast.next;
-            }
-            // 断开与后面重复元素的连接
-            slow.next = null;
-            return head;
+            ListNode cur = head;
 
+            while (cur != null && cur.next != null) {
+                if (cur.val == cur.next.val) {
+                    cur.next = cur.next.next;
+                } else {
+                    cur = cur.next;
+                }
+            }
+            return head;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
