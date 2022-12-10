@@ -57,6 +57,41 @@ public class Q25ReverseNodesInKGroup {
         ListNode listNode = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         System.out.println(solution.reverseKGroup(listNode, 2));
     }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+        // 区间包含[a,b)个待反转的元素
+        ListNode a, b;
+        a = b = head;
+        for (int i = 0; i < k; i++) {
+            if (b == null) {
+                return head;
+            }
+            // 找到k个节点后的b节点，不包含b
+            b = b.next;
+        }
+        // 反转前k个元素
+        ListNode newHead = reverse(a, b);
+        // 递归反转后续链表并连接起来
+        a.next = reverseKGroup(b, k);
+        return newHead;
+    }
+
+    private ListNode reverse(ListNode a, ListNode b) {
+        ListNode pre, cur, nxt;
+        pre = null;
+        cur = a;
+        nxt = a;
+        while (cur != b) {
+            nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = nxt;
+        }
+        return pre;
+    }
     //leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -71,32 +106,33 @@ public class Q25ReverseNodesInKGroup {
      */
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
-            if (head == null) {
-                return null;
-            }
-            // 区间包含[a,b)个待反转的元素
-            ListNode a, b;
-            a = b = head;
-            for (int i = 0; i < k; i++) {
-                if (b == null) {
-                    return head;
+            ListNode dummy = new ListNode(-1);
+            dummy.next = head;
+            ListNode pre = dummy;
+            ListNode end = dummy;
+            while (end.next != null) {
+                for (int i = 0; i < k && end != null; i++) {
+                    end = end.next;
                 }
-                // 找到k个节点后的b节点，不包含b
-                b = b.next;
+                if (end == null) {
+                    break;
+                }
+                ListNode start = pre.next;
+                ListNode next = end.next;
+                end.next = null;
+                pre.next = reverse(start);
+                start.next = next;
+                pre = start;
+                end = pre;
             }
-            // 反转前k个元素
-            ListNode newHead = reverse(a, b);
-            // 递归反转后续链表并连接起来
-            a.next = reverseKGroup(b, k);
-            return newHead;
+            return dummy.next;
         }
 
-        private ListNode reverse(ListNode a, ListNode b) {
+        public ListNode reverse(ListNode head) {
             ListNode pre, cur, nxt;
             pre = null;
-            cur = a;
-            nxt = a;
-            while (cur != b) {
+            cur = head;
+            while (cur != null) {
                 nxt = cur.next;
                 cur.next = pre;
                 pre = cur;
@@ -104,6 +140,8 @@ public class Q25ReverseNodesInKGroup {
             }
             return pre;
         }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
