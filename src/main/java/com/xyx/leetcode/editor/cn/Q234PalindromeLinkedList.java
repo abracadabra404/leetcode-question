@@ -49,6 +49,24 @@ public class Q234PalindromeLinkedList {
         System.out.println(solution.isPalindrome(head));
 
     }
+
+    ListNode left;
+
+    public boolean isPalindrome(ListNode head) {
+        left = head;
+        return traverse(head);
+    }
+
+    private boolean traverse(ListNode right) {
+        if (right == null) {
+            return true;
+        }
+        boolean res = traverse(right.next);
+        // 链表的后序遍历
+        res = res && left.val == right.val;
+        left = left.next;
+        return res;
+    }
     //leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -65,19 +83,40 @@ public class Q234PalindromeLinkedList {
         ListNode left;
 
         public boolean isPalindrome(ListNode head) {
-            left = head;
-            return traverse(head);
+            // 快慢指针找到中点
+            ListNode slow, fast;
+            slow = fast = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            if (fast != null) {
+                slow = slow.next;
+            }
+            ListNode left = head;
+            // 反转后半部分
+            ListNode right = traverse(slow);
+            // 比较前半部门节点和后半部分节点
+            while (right != null) {
+                if (left.val != right.val) {
+                    return false;
+                }
+                left = left.next;
+                right = right.next;
+            }
+            return true;
         }
 
-        private boolean traverse(ListNode right) {
-            if (right == null) {
-                return true;
+        private ListNode traverse(ListNode head) {
+            ListNode pre, cur = head;
+            pre = null;
+            while (cur != null) {
+                ListNode next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
             }
-            boolean res = traverse(right.next);
-            // 链表的后序遍历
-            res = res && left.val == right.val;
-            left = left.next;
-            return res;
+            return pre;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
