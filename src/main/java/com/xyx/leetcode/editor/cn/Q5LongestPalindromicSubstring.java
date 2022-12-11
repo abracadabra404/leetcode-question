@@ -49,7 +49,9 @@ public class Q5LongestPalindromicSubstring {
         public String longestPalindrome(String s) {
             String res = "";
             for (int i = 0; i < s.length(); i++) {
+                // 以s[i]为中心的回文串
                 String s1 = palindrome(s, i, i);
+                // 以s[i]和s[i+1]为中心的回文串
                 String s2 = palindrome(s, i, i + 1);
                 res = res.length() > s1.length() ? res : s1;
                 res = res.length() > s2.length() ? res : s2;
@@ -57,11 +59,15 @@ public class Q5LongestPalindromicSubstring {
             return res;
         }
 
+        // 在s中寻找以s[l]和s[r]为中心的最长回文串
         public String palindrome(String s, int l, int r) {
+            // 防止索引越界
             while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+                // 双指针，项两边展开
                 l--;
                 r++;
             }
+            // 返回以s[l]和s[r]为中心的最长回文串
             return s.substring(l + 1, r);
         }
     }
