@@ -63,6 +63,7 @@ public class Q303RangeSumQueryImmutable {
         private int[] preSum;
 
         // 初始化计算前面各项的和
+        // 前缀和数组
         public NumArray(int[] nums) {
             preSum = new int[nums.length + 1];
             for (int i = 1; i < preSum.length; i++) {
