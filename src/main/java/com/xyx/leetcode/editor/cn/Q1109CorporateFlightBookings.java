@@ -70,12 +70,16 @@ public class Q1109CorporateFlightBookings {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] corpFlightBookings(int[][] bookings, int n) {
+            // nums 初识化全为0
             int[] nums = new int[n];
+            // 构造差分解法
             Difference difference = new Difference(nums);
             for (int[] booking : bookings) {
+                // 转成数组索引-1
                 int i = booking[0] - 1;
                 int j = booking[1] - 1;
                 int val = booking[2];
+                // 对区间nums[i...j]增加val
                 difference.increment(i, j, val);
             }
             return difference.result();
