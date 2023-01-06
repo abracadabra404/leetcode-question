@@ -47,17 +47,28 @@ package com.xyx.leetcode.editor.cn;
 public class Q1094CarPooling {
     public static void main(String[] args) {
         Solution solution = new Q1094CarPooling().new Solution();
+        int[][] trips = {{2, 1, 5}, {3, 3, 7}};
+        int capacity = 4;
+        System.out.println(solution.carPooling(trips, capacity));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean carPooling(int[][] trips, int capacity) {
+            // 最多1001个车站
             int[] nums = new int[1001];
+            // 构造差分数组
             Difference difference = new Difference(nums);
+
             for (int[] trip : trips) {
+                // 乘客数量
                 int val = trip[0];
+                // 第trip[1]站上车
                 int i = trip[1];
+                // 第trip[2]站下车
+                // 乘客在车上的区间为，[trip[1],trip[2]-1]
                 int j = trip[2] - 1;
+                // 进行区间操作
                 difference.increment(i, j, val);
             }
             int[] res = difference.result();
